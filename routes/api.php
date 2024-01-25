@@ -1,20 +1,25 @@
 <?php
 
-use App\Http\Controllers\Api\LoginController;
-use App\Http\Controllers\Auth\ForgetPasswordController;
-use App\Http\Controllers\Auth\ResetPasswordController;
-use App\Http\Controllers\BookingController;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\ItemController;
-use App\Http\Controllers\LogoutController;
-use App\Http\Controllers\ProductsRequestsController;
-use App\Http\Controllers\ReviewController;
-use App\Http\Controllers\SectionController;
-use App\Http\Controllers\user\UserAuth;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\user\UserAuth;
+use App\Http\Controllers\BillController;
+use App\Http\Controllers\ItemController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\LogoutController;
+use App\Http\Controllers\OffersController;
+use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\BookingController;
+use App\Http\Controllers\MessageController;
+use App\Http\Controllers\RequestController;
+use App\Http\Controllers\SectionController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\Api\LoginController;
+use App\Http\Controllers\ProductsRequestsController;
+use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\Auth\ForgetPasswordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +31,20 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
+
+
+Route::post('/send-custom-offer', [OffersController::class, 'sendCustomOffer']);
+
+Route::post('/make-offer', [OffersController::class, 'makeOffer']);
+
+Route::get('/bills', [BillController::class, 'index']);
+Route::get('/bills/{id}', [BillController::class, 'show']);
+
+Route::post('/create-bill', [BillController::class, 'createBill']);
+
+Route::get('/total-income/{month}', [BillController::class, 'getTotalIncome']);
+
+
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

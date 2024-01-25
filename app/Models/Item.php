@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\ProductsRequests;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Item extends Model
 {
@@ -32,5 +33,9 @@ class Item extends Model
     public function bookings()
     {
         return $this->hasMany(Booking::class);
+    }
+    public function productRequests()
+    {
+        return $this->hasMany(ProductsRequests::class, 'item_id');
     }
 }

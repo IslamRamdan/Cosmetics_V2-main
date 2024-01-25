@@ -13,8 +13,11 @@ return new class extends Migration
     {
         Schema::create('products_requests', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
-            $table->foreignId('item_id')->constrained('items')->cascadeOnDelete();
+            // $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
+            // $table->foreignId('item_id')->constrained('items')->cascadeOnDelete();
+
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->unsignedBigInteger('item_id')->nullable();
             $table->string('count');
             $table->timestamps();
         });
