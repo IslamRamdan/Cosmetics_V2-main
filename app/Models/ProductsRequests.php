@@ -11,10 +11,24 @@ class ProductsRequests extends Model
     protected $fillable = [
         'user_id',
         'item_id',
-        'count'
+        'count',
+        'name', 'price'
     ];
     public function item()
     {
-        return $this->hasOne(Item::class);
+        // return $this->hasOne(Item::class);
+        return $this->belongsTo(Item::class, 'item_id');
     }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+  
+
+    public function bill()
+    {
+        return $this->belongsTo(Bill::class);
+    }
+
 }

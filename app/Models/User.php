@@ -3,10 +3,13 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Role;
+use App\Models\Booking;
+use App\Models\ProductsRequests;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
@@ -51,5 +54,11 @@ class User extends Authenticatable
     public function booking()
     {
         return $this->belongsTo(Booking::class);
+    }
+
+    
+    public function productRequests()
+    {
+        return $this->hasMany(ProductsRequests::class);
     }
 }
